@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BarbeiroRepository extends JpaRepository< BarbeiroModel, Long> {
 
-    BarbeiroModel findByNomeBarbeiro(String nome);
+    BarbeiroModel findByNomeBarbeiro(String nomeBarbeiro);
 }

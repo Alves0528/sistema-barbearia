@@ -4,7 +4,6 @@ import com.barbearia.sistema.model.BarbeiroModel;
 import com.barbearia.sistema.repository.BarbeiroRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class BarbeiroService {
@@ -27,15 +26,16 @@ public class BarbeiroService {
         barbeiroRepository.deleteById(id);
     }
 
-    public BarbeiroModel alterarBarbeiro(BarbeiroModel barbeiroNovo, String nome){
-        BarbeiroModel barbeiro = barbeiroRepository.findByNomeBarbeiro(nome);
+    public BarbeiroModel alterarBarbeiro(Long id, BarbeiroModel barbeiroNovo){
+        BarbeiroModel barbeiroAntigo = barbeiroRepository.findById(id).orElse(null);
 
-        if(Objects.isNull(barbeiro)){
+        if(barbeiroAntigo == null){
             throw new RuntimeException("Barbeiro não está cadastrado");
         }
-        
+
+        barbeiroAntigo.setNomeBarbeiro(barbeiroNovo.getNomeBarbeiro());
+        barbeiroAntigo.setTelefoneBarbeiro(barbeiroNovo.getTelefoneBarbeiro());
+
+        return barbeiroRepository.save(barbeiroNovo);
     }
-
-
-
 }
