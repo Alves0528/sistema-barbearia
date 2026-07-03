@@ -1,4 +1,62 @@
 package com.barbearia.sistema.service;
 
+import com.barbearia.sistema.model.ProdutoModel;
+import com.barbearia.sistema.repository.ProdutoRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
 public class ProdutoService {
+
+
+    private final ProdutoRepository produtoRepository;
+
+    public ProdutoService(ProdutoRepository produtoRepository) {
+        this.produtoRepository = produtoRepository;
+    }
+
+    public List<ProdutoModel> listarProdutos(){
+        return produtoRepository.findAll();
+    }
+
+    public ProdutoModel salvarProduto(ProdutoModel produto){
+        return produtoRepository.save(produto);
+    }
+
+    public void deletarProduto(Long id){
+        produtoRepository.deleteById(id);
+    }
+
+    public ProdutoModel alterarProduto(Long id, ProdutoModel produtoNovo){
+        ProdutoModel produtoAntigo = produtoRepository.findById(id).orElse(null);
+
+        if(produtoAntigo == null){
+            throw new RuntimeException("Produto não está cadastrado");
+        }
+
+        produtoAntigo.setNomeProduto(produtoNovo.getNomeProduto());
+        produtoAntigo.setPrecoProduto(produtoNovo.getPrecoProduto());
+        produtoAntigo.setQuantidadeEstoque(produtoNovo.getQuantidadeEstoque());
+
+        return produtoRepository.save(produtoAntigo);
+    }
+
+    public void diminuirEstoque(Long id, Integer quantidadeVendida){
+        ProdutoModel produto = produtoRepository.findById(id).orElse(null);
+
+        if(produto == null){
+            throw new RuntimeException("Produto não está cadastrado");
+        }
+
+        if(produto.getQuantidadeEstoque() < quantidadeVendida){
+            throw new RuntimeException("Quantidade insuficiente no estoque");
+        }
+
+        int novoEstoque = produto.getQuantidadeEstoque() - quantidadeVendida;
+        produto.setQuantidadeEstoque(novoEstoque);
+
+        produtoRepository.save(produto);
+
+    }
 }

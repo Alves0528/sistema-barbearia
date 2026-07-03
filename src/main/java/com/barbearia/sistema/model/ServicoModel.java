@@ -14,15 +14,16 @@ public class ServicoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    private String descrição;
+    private String nome;
+    private String descricao;
     private BigDecimal precoServico;
 
     public ServicoModel(){
     }
 
-    public ServicoModel(String descrição, BigDecimal precoServico) {
-        this.descrição = descrição;
+    public ServicoModel(String nome, String descricao, BigDecimal precoServico) {
+        this.nome = nome;
+        this.descricao = descricao;
         this.precoServico = precoServico;
     }
 
@@ -36,14 +37,22 @@ public class ServicoModel {
         this.id = id;
     }
 
-    public String getDescrição() {
-
-        return descrição;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescrição(String descrição) {
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-        this.descrição = descrição;
+    public String getDescricao() {
+
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+
+        this.descricao = descricao;
     }
 
     public BigDecimal getPrecoServico() {

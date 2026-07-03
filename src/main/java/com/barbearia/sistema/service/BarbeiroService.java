@@ -36,6 +36,6 @@ public class BarbeiroService {
         barbeiroAntigo.setNomeBarbeiro(barbeiroNovo.getNomeBarbeiro());
         barbeiroAntigo.setTelefoneBarbeiro(barbeiroNovo.getTelefoneBarbeiro());
 
-        return barbeiroRepository.save(barbeiroNovo);
+        return barbeiroRepository.save(barbeiroAntigo);
     }
 }
