@@ -18,12 +18,12 @@ public class BarbeiroModel {
     public BarbeiroModel(){
     }
 
-    public BarbeiroModel(String nome, String telefone){
-        this.nomeBarbeiro = nome;
-        this.telefoneBarbeiro = telefone;
+    public BarbeiroModel(String nomeBarbeiro, String telefoneBarbeiro){
+        this.nomeBarbeiro = nomeBarbeiro;
+        this.telefoneBarbeiro = telefoneBarbeiro;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -35,15 +35,15 @@ public class BarbeiroModel {
         return nomeBarbeiro;
     }
 
-    public void setNomeBarbeiro(String nome) {
-        this.nomeBarbeiro = nome;
+    public void setNomeBarbeiro(String nomeBarbeiro) {
+        this.nomeBarbeiro = nomeBarbeiro;
     }
 
     public String getTelefoneBarbeiro() {
         return telefoneBarbeiro;
     }
 
-    public void setTelefoneBarbeiro(String telefone) {
-        this.telefoneBarbeiro = telefone;
+    public void setTelefoneBarbeiro(String telefoneBarbeiro) {
+        this.telefoneBarbeiro = telefoneBarbeiro;
     }
 }
