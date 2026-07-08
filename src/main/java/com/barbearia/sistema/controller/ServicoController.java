@@ -1,8 +1,6 @@
 package com.barbearia.sistema.controller;
 
-import com.barbearia.sistema.model.BarbeiroModel;
 import com.barbearia.sistema.model.ServicoModel;
-import com.barbearia.sistema.service.BarbeiroService;
 import com.barbearia.sistema.service.ServicoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,13 +30,13 @@ public class ServicoController {
     }
 
     @PostMapping
-    public String salvarBarbeiro(ServicoModel servico){
+    public String salvarServico(ServicoModel servico){
         servicoService.salvarServico(servico);
         return "redirect:/servicos";
     }
 
     @PostMapping("/editar")
-    public String editarBarbeiro(ServicoModel servico){
+    public String editarServico(ServicoModel servico){
         servicoService.alterarServico(servico.getId(), servico);
         return "redirect:/servicos";
     }
