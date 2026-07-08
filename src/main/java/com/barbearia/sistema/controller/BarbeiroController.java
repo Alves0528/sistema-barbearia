@@ -19,7 +19,7 @@ public class BarbeiroController {
 
     @GetMapping
     public String lista(Model model){
-        model.addAttribute("listaDeBarbeiros", barbeiroService.listarBarbeiros());
+        model.addAttribute("listaBarbeiros", barbeiroService.listarBarbeiros());
         return "barbeiros";
     }
 
