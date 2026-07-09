@@ -36,7 +36,7 @@
                 <th>Código</th>
                 <th>Nome</th>
                 <th>Preço (R$)</th>
-                <th>Quantidade</th>
+                <th>Quantidade em Estoque</th>
             </tr>
             </thead>
             <tbody>
@@ -44,7 +44,9 @@
                 <td th:text="${produto.id}">1</td>
                 <td th:text="${produto.nomeProduto}">Gél de Cabelo</td>
                 <td th:text="${produto.precoProduto}">30.00</td>
-                <td th:text="${produto.quantidadeEstoque}">3</td>
+                <td th:text="${produto.quantidadeEstoque}"
+                    th:classappend="${produto.quantidadeEstoque < 5} ?
+                    'text-danger fw-bold : text-sucess fw-bold'">10</td>
                 <td>
                     <button class="btn btn-sm btn-outline-info">Editar</button>
                     <button class="btn btn-sm btn-outline-danger">Excluir</button>
