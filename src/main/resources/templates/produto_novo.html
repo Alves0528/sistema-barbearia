@@ -30,21 +30,21 @@
         <form th:action="@{/produtos}" th:object="${produto}" method="post">
 
             <div class="mb-3">
-                <label class="form-label">Nome do Produto:</label>
+                <label class="form-label text-secondary">Nome do Produto:</label>
                 <label>
                     <input type="text" class="form-control" th:field="*{nomeProduto}" required placeholder="Ex: Gél de Cabelo">
                 </label>
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Preço(R$):</label>
+                <label class="form-label text-secondary">Preço(R$):</label>
                 <label>
                     <input type="text" class="form-control" th:field="*{precoProduto}" required placeholder="Ex: 99.99">
                 </label>
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Quantidade:</label>
+                <label class="form-label text-secondary">Quantidade:</label>
                 <label>
                     <input type="text" class="form-control" th:field="*{quantidadeEstoque}" required placeholder="Ex: 99">
                 </label>

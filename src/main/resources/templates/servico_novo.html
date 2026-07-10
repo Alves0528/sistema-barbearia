@@ -30,21 +30,21 @@
         <form th:action="@{/servicos}" th:object="${servico}" method="post">
 
             <div class="mb-3">
-                <label class="form-label">Nome do Servico:</label>
+                <label class="form-label text-secondary">Nome do Servico:</label>
                 <label>
                     <input type="text" class="form-control" th:field="*{nome}" required placeholder="Ex: Corte Simples">
                 </label>
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Descrição breve:</label>
+                <label class="form-label text-secondary">Descrição breve:</label>
                 <label>
                     <input type="text" class="form-control" th:field="*{descricao}" required placeholder="Ex: Máquina nas laterais e tesoura no topo">
                 </label>
             </div>
 
             <div class="mb-4">
-                <label class="form-label">Preço(R$):</label>
+                <label class="form-label text-secondary">Preço(R$):</label>
                 <label>
                     <input type="text" class="form-control" th:field="*{precoServico}" required placeholder="Ex: 99.99">
                 </label>
