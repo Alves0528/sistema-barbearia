@@ -37,7 +37,7 @@ public class AtendimentoModel {
     private List<ServicoModel> servicos = new ArrayList<>();
 
     private LocalDate data;
-    private LocalTime hora;
+    private LocalTime horaTermino;
     private BigDecimal valorTotal;
 
     public AtendimentoModel(){
@@ -45,22 +45,12 @@ public class AtendimentoModel {
         this.valorTotal = BigDecimal.ZERO;
     }
 
-    public AtendimentoModel(LocalTime hora, BarbeiroModel barbeiro) {
+    public AtendimentoModel(LocalTime horaTermino, BarbeiroModel barbeiro) {
         this.data = LocalDate.now();
-        this.hora = hora;
+        this.horaTermino = horaTermino;
         this.valorTotal = BigDecimal.ZERO;
         this.barbeiro = barbeiro;
 
-    }
-
-    public void adicionarServico(ServicoModel servico){
-        this.servicos.add(servico);
-        this.valorTotal = this.valorTotal.add(servico.getPrecoServico());
-    }
-
-    public void adicionarProduto(ProdutoModel produto){
-        this.produtos.add(produto);
-        this.valorTotal = this.valorTotal.add(produto.getPrecoProduto());
     }
 
     public Long getId() {
@@ -103,12 +93,12 @@ public class AtendimentoModel {
         this.data = data;
     }
 
-    public LocalTime getHora() {
-        return hora;
+    public LocalTime getHoraTermino() {
+        return horaTermino;
     }
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setHoraTermino(LocalTime horaTermino) {
+        this.horaTermino = horaTermino;
     }
 
     public BigDecimal getValorTotal() {
