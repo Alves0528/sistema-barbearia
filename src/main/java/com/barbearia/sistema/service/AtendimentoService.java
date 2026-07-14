@@ -56,7 +56,6 @@ public class AtendimentoService {
         return valorTotal;
     }
 
-
     public AtendimentoModel salvarAtendimento(AtendimentoModel atendimento){
 
         BigDecimal total = calcularValorTotalAtendimento(atendimento);
@@ -71,4 +70,5 @@ public class AtendimentoService {
 
         return atendimentoRepository.save(atendimento);
     }
+
 }

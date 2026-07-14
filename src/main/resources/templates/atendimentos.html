@@ -37,7 +37,8 @@
                 <th>Barbeiro Responsável</th>
                 <th>Total (R$)</th>
                 <th>Data</th>
-                <th>Hora</th>
+                <th>Início</th>
+                <th>Término</th>
             </tr>
             </thead>
             <tbody>
@@ -46,6 +47,7 @@
                 <td th:text="${atendimento.barbeiro.nomeBarbeiro}">João</td>
                 <td th:text="${atendimento.valorTotal}">50.00</td>
                 <td th:text="${atendimento.data}">01/01/2026</td>
+                <td th:text="${atendimento.horaInicio}">13:30</td>
                 <td th:text="${atendimento.horaTermino}">14:30</td>
             </tr>
             </tbody>

@@ -2,6 +2,7 @@ package com.barbearia.sistema.model;
 
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -37,6 +38,7 @@ public class AtendimentoModel {
     private List<ServicoModel> servicos = new ArrayList<>();
 
     private LocalDate data;
+    private LocalTime horaInicio;
     private LocalTime horaTermino;
     private BigDecimal valorTotal;
 
@@ -45,8 +47,9 @@ public class AtendimentoModel {
         this.valorTotal = BigDecimal.ZERO;
     }
 
-    public AtendimentoModel(LocalTime horaTermino, BarbeiroModel barbeiro) {
+    public AtendimentoModel(LocalTime horaInicio, LocalTime horaTermino, BarbeiroModel barbeiro) {
         this.data = LocalDate.now();
+        this.horaInicio = horaInicio;
         this.horaTermino = horaTermino;
         this.valorTotal = BigDecimal.ZERO;
         this.barbeiro = barbeiro;
@@ -91,6 +94,14 @@ public class AtendimentoModel {
 
     public void setData(LocalDate data) {
         this.data = data;
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
     public LocalTime getHoraTermino() {

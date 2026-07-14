@@ -29,10 +29,26 @@
 
         <form th:action="@{/atendimentos}" th:object="${atendimento}" method="post">
 
-            <div class="row">
+            <div class="row ">
                 <div class="col-md-6 mb-4">
-                    <label class="form-label text-secondary">Horário de Conclusão:</label>
-                    <input type="time" class="form-control" th:field="*{horaTermino}" required>
+                    <div class="row">
+                        <div class="col-6 ">
+                            <label class="form-label text-secondary">Horário de Inicio:</label>
+                            <input
+                                    type="time"
+                                    class="form-control"
+                                    onclick="this.showPicker()"
+                                    th:field="*{horaInicio}" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label text-secondary">Horário de Término:</label>
+                            <input
+                                    type="time"
+                                    class="form-control"
+                                    onclick="this.showPicker()"
+                                    th:field="*{horaTermino}" required>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
@@ -42,6 +58,7 @@
                         <option th:each="b : ${listaBarbeiros}" th:value="${b.id}" th:text="${b.nomeBarbeiro}"></option>
                     </select>
                 </div>
+
             </div>
 
             <div class="mb-4 p-3" style="border: 1px solid #444; border-radius: 10px;">
