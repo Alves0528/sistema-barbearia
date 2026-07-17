@@ -45,8 +45,14 @@
                 <td th:text="${barbeiro.nomeBarbeiro}">João</td>
                 <td th:text="${barbeiro.telefoneBarbeiro}">9999-9999</td>
                 <td>
-                    <button class="btn btn-sm btn-outline-info">Editar</button>
-                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+
+                    <a th:href="@{/barbeiros/editar/{id}(id=${barbeiro.id})}" class="btn btn-sm btn-outline-info"> Editar</a>
+
+                    <form class="" th:action="@{/barbeiros/excluir}" method="post" >
+                        <input type="hidden" name="id" th:value="${barbeiro.id}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" >Excluir</button>
+
+                    </form>
                 </td>
             </tr>
             </tbody>

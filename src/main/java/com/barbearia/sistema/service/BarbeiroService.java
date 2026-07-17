@@ -9,7 +9,6 @@ import java.util.List;
 public class BarbeiroService {
 
     private final BarbeiroRepository barbeiroRepository;
-
     public BarbeiroService(BarbeiroRepository barbeiroRepository) {
         this.barbeiroRepository = barbeiroRepository;
     }
@@ -18,11 +17,15 @@ public class BarbeiroService {
         return barbeiroRepository.findAll();
     }
 
+    public BarbeiroModel buscarBarbeiro(Long id){
+       return barbeiroRepository.findById(id).orElse(null);
+    }
+
     public BarbeiroModel salvarBarbeiro(BarbeiroModel barbeiro){
         return barbeiroRepository.save(barbeiro);
     }
 
-    public void deletarBarbeiro(Long id){
+    public void excluirBarbeiro(Long id){
         barbeiroRepository.deleteById(id);
     }
 
@@ -38,4 +41,5 @@ public class BarbeiroService {
 
         return barbeiroRepository.save(barbeiroAntigo);
     }
+
 }
