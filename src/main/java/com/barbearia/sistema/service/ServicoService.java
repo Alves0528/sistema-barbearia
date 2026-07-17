@@ -3,14 +3,12 @@ package com.barbearia.sistema.service;
 import com.barbearia.sistema.model.ServicoModel;
 import com.barbearia.sistema.repository.ServicoRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class ServicoService {
 
     private final ServicoRepository servicoRepository;
-
     public ServicoService(ServicoRepository servicoRepository) {
         this.servicoRepository = servicoRepository;
     }
@@ -19,11 +17,15 @@ public class ServicoService {
         return servicoRepository.findAll();
     }
 
+    public ServicoModel buscarServico(Long id){
+        return servicoRepository.findById(id).orElse(null);
+    }
+
     public ServicoModel salvarServico(ServicoModel servico){
         return servicoRepository.save(servico);
     }
 
-    public void deletarServico(Long id){
+    public void excluirServico(Long id){
         servicoRepository.deleteById(id);
     }
 
@@ -40,4 +42,5 @@ public class ServicoService {
 
         return servicoRepository.save(servicoAntigo);
     }
+
 }

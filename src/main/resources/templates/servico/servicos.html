@@ -46,7 +46,7 @@
                 <td th:text="${servico.descricao}">Corte Simples</td>
                 <td th:text="${servico.precoServico}">30.00</td>
                 <td>
-                    <button class="btn btn-sm btn-outline-info">Editar</button>
+                    <a th:href="@{/servicos/editar/{id}(id=${servico.id})}" class="btn btn-sm btn-outline-info">Editar</a>
                     <button class="btn btn-sm btn-outline-danger">Excluir</button>
                 </td>
             </tr>

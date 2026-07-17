@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
-        <a class="navbar-brand" href="/">BARBERSHOP PRO</a>
+        <a class="navbar-brand" href="/static">BARBERSHOP PRO</a>
         <a href="/servicos" class="btn btn-outline-light btn-sm">Voltar aos Serviços</a>
     </div>
 </nav>
@@ -29,7 +29,7 @@
     <div class="card card-custom p-5 w-50 mt-4">
         <h3 class="text-center mb-4 text-warning">Cadastrar Novo Serviço</h3>
 
-        <form th:action="@{/servicos}" th:object="${servico}" method="post">
+        <form th:action="@{/servicos/salvarNovo}" th:object="${servico}" method="post">
 
             <div class="mb-3">
                 <label class="form-label text-secondary">Nome do Servico:</label>
