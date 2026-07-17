@@ -48,8 +48,13 @@
                     th:classappend="${produto.quantidadeEstoque < 5} ?
                     'text-danger fw-bold : text-sucess fw-bold'">10</td>
                 <td>
-                    <button class="btn btn-sm btn-outline-info">Editar</button>
-                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+                    <a th:href="@{/produtos/editar/{id}(id=${produto.id})}" class="btn btn-sm btn-outline-info">Editar</a>
+
+                    <form class="" th:action="@{/produtos/excluir}" method="post" >
+                        <input type="hidden" name="id" th:value="${produto.id}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" >Excluir</button>
+                    </form>
+
                 </td>
             </tr>
             </tbody>

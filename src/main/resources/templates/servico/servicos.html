@@ -47,7 +47,12 @@
                 <td th:text="${servico.precoServico}">30.00</td>
                 <td>
                     <a th:href="@{/servicos/editar/{id}(id=${servico.id})}" class="btn btn-sm btn-outline-info">Editar</a>
-                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+
+                    <form class="" th:action="@{/servicos/excluir}" method="post" >
+                        <input type="hidden" name="id" th:value="${servico.id}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" >Excluir</button>
+                    </form>
+
                 </td>
             </tr>
             </tbody>
