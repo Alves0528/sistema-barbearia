@@ -18,7 +18,6 @@ public class AtendimentoController {
     private final BarbeiroService barbeiroService;
     private final ServicoService servicoService;
     private final ProdutoService produtoService;
-
     public AtendimentoController(AtendimentoService atendimentoService, BarbeiroService barbeiroService, ServicoService servicoService,ProdutoService produtoService) {
         this.atendimentoService = atendimentoService;
         this.barbeiroService = barbeiroService;
@@ -27,9 +26,9 @@ public class AtendimentoController {
     }
 
     @GetMapping
-    public String lista(Model model){
+    public String listarAtendimentos(Model model){
         model.addAttribute("listaAtendimentos", atendimentoService.listarAtendimentos());
-        return "atendimentos";
+        return "atendimento/atendimentos";
     }
 
     @GetMapping("/novo")
@@ -40,10 +39,10 @@ public class AtendimentoController {
         model.addAttribute("listaServicos", servicoService.listarServicos());
         model.addAttribute("listaProdutos", produtoService.listarProdutos());
 
-        return "atendimento_novo";
+        return "atendimento/novo_atendimento";
     }
 
-    @PostMapping
+    @PostMapping("/salvar")
     public String salvarAtenidmento(AtendimentoModel atendimento){
         atendimentoService.salvarAtendimento(atendimento);
         return "redirect:/atendimentos";

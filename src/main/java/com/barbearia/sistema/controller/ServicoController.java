@@ -54,5 +54,4 @@ public class ServicoController {
         servicoService.excluirServico(servico.getId());
         return "redirect:/servicos";
     }
-
 }

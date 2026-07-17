@@ -46,7 +46,7 @@
                 <td th:text="${atendimento.id}">1</td>
                 <td th:text="${atendimento.barbeiro.nomeBarbeiro}">João</td>
                 <td th:text="${atendimento.valorTotal}">50.00</td>
-                <td th:text="${atendimento.data}">01/01/2026</td>
+                <td th:text="${#temporals.format(atendimento.data, 'dd/MM/yyyy')}">01/01/2026</td>
                 <td th:text="${atendimento.horaInicio}">13:30</td>
                 <td th:text="${atendimento.horaTermino}">14:30</td>
             </tr>
