@@ -35,18 +35,28 @@
                         <div class="col-6 ">
                             <label class="form-label text-secondary">Horário de Inicio:</label>
                             <input
-                                    type="time"
-                                    class="form-control"
-                                    onclick="this.showPicker()"
-                                    th:field="*{horaInicio}" required>
+                                type="time"
+                                class="form-control"
+                                onclick="this.showPicker()"
+                                th:field="*{horaInicio}"
+                                min="08:00"
+                                max="19:00"
+                                step="1800"
+                                required
+                            >
                         </div>
                         <div class="col-6">
                             <label class="form-label text-secondary">Horário de Término:</label>
                             <input
-                                    type="time"
-                                    class="form-control"
-                                    onclick="this.showPicker()"
-                                    th:field="*{horaTermino}" required>
+                                type="time"
+                                class="form-control"
+                                onclick="this.showPicker()"
+                                th:field="*{horaTermino}"
+                                min="09:00"
+                                max="20:00"
+                                step="1800"
+                                required
+                            >
                         </div>
                     </div>
                 </div>

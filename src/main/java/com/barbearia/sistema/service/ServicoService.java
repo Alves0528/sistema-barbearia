@@ -14,7 +14,7 @@ public class ServicoService {
     }
 
     public List<ServicoModel> listarServicos(){
-        return servicoRepository.findAll();
+        return servicoRepository.findByAtivoTrue();
     }
 
     public ServicoModel buscarServico(Long id){
@@ -26,7 +26,11 @@ public class ServicoService {
     }
 
     public void excluirServico(Long id){
-        servicoRepository.deleteById(id);
+        ServicoModel servico = servicoRepository.findById(id).orElse(null);
+        if ( servico != null){
+            servico.setAtivo(false);
+            servicoRepository.save(servico);
+        }
     }
 
     public ServicoModel alterarServico(Long id, ServicoModel servicoNovo){
