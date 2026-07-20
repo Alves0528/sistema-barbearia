@@ -14,7 +14,7 @@ public class BarbeiroService {
     }
 
     public List<BarbeiroModel> listarBarbeiros(){
-        return barbeiroRepository.findAll();
+        return barbeiroRepository.findByAtivoTrue();
     }
 
     public BarbeiroModel buscarBarbeiro(Long id){
@@ -26,7 +26,11 @@ public class BarbeiroService {
     }
 
     public void excluirBarbeiro(Long id){
-        barbeiroRepository.deleteById(id);
+        BarbeiroModel barbeiro = barbeiroRepository.findById(id).orElse(null);
+        if (barbeiro != null){
+            barbeiro.setAtivo(false);
+            barbeiroRepository.save(barbeiro);
+        }
     }
 
     public BarbeiroModel alterarBarbeiro(Long id, BarbeiroModel barbeiroNovo){

@@ -14,6 +14,7 @@ public class BarbeiroModel {
 
     private String nomeBarbeiro;
     private String telefoneBarbeiro;
+    private Boolean ativo = true;
 
     public BarbeiroModel(){
     }
@@ -45,5 +46,13 @@ public class BarbeiroModel {
 
     public void setTelefoneBarbeiro(String telefoneBarbeiro) {
         this.telefoneBarbeiro = telefoneBarbeiro;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }
