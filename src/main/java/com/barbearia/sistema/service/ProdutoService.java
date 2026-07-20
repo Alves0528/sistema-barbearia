@@ -1,6 +1,7 @@
 package com.barbearia.sistema.service;
 
 import com.barbearia.sistema.model.ProdutoModel;
+import com.barbearia.sistema.repository.BarbeiroRepository;
 import com.barbearia.sistema.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +11,13 @@ import java.util.List;
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
+
     public ProdutoService(ProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
     }
 
     public List<ProdutoModel> listarProdutos(){
-        return produtoRepository.findAll();
+        return produtoRepository.findByAtivoTrue();
     }
 
     public ProdutoModel buscarProduto(Long id){
@@ -27,7 +29,11 @@ public class ProdutoService {
     }
 
     public void excluirProduto(Long id){
-        produtoRepository.deleteById(id);
+        ProdutoModel produto = produtoRepository.findById(id).orElse(null);
+        if (produto != null){
+            produto.setAtivo(false);
+            produtoRepository.save(produto);
+        }
     }
 
     public ProdutoModel alterarProduto(Long id, ProdutoModel produtoNovo){

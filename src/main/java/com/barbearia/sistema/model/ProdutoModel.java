@@ -17,8 +17,7 @@ public class ProdutoModel {
     private String nomeProduto;
     private BigDecimal precoProduto;
     private Integer quantidadeEstoque;
-
-
+    private Boolean ativo = true;
 
     public ProdutoModel(){
     }
@@ -60,4 +59,13 @@ public class ProdutoModel {
     public void setQuantidadeEstoque(Integer quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
     }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
 }
