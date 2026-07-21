@@ -41,6 +41,7 @@ public class AtendimentoModel {
     private LocalTime horaInicio;
     private LocalTime horaTermino;
     private BigDecimal valorTotal;
+    private BigDecimal valorComissaoBarbeiro = BigDecimal.ZERO;
 
     public AtendimentoModel(){
         this.data = LocalDate.now();
@@ -118,5 +119,13 @@ public class AtendimentoModel {
 
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public BigDecimal getValorComissaoBarbeiro() {
+        return valorComissaoBarbeiro;
+    }
+
+    public void setValorComissaoBarbeiro(BigDecimal valorComissaoBarbeiro) {
+        this.valorComissaoBarbeiro = valorComissaoBarbeiro;
     }
 }

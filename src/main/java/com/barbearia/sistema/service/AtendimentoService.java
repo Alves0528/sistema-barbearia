@@ -1,6 +1,7 @@
 package com.barbearia.sistema.service;
 
 import com.barbearia.sistema.model.AtendimentoModel;
+import com.barbearia.sistema.model.BarbeiroModel;
 import com.barbearia.sistema.model.ProdutoModel;
 import com.barbearia.sistema.model.ServicoModel;
 import com.barbearia.sistema.repository.AtendimentoRepository;
@@ -8,29 +9,43 @@ import com.barbearia.sistema.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Service
 public class AtendimentoService {
 
     private final AtendimentoRepository atendimentoRepository;
-    private final ProdutoRepository produtoRepository;
     private final ProdutoService produtoService;
     private final ServicoService servicoService;
+    private final BarbeiroService barbeiroService;
 
-    public AtendimentoService(AtendimentoRepository atendimentoRepository, ProdutoRepository produtoRepository, ProdutoService produtoService, ServicoService servicoService) {
+    public AtendimentoService(AtendimentoRepository atendimentoRepository, ProdutoService produtoService, ServicoService servicoService, BarbeiroService barbeiroService) {
         this.atendimentoRepository = atendimentoRepository;
-        this.produtoRepository = produtoRepository;
         this.produtoService = produtoService;
         this.servicoService = servicoService;
+        this.barbeiroService = barbeiroService;
     }
 
     public List<AtendimentoModel> listarAtendimentos(){
         return atendimentoRepository.findAll();
     }
 
-    private BigDecimal calcularValorTotalAtendimento(AtendimentoModel atendimento){
+    public AtendimentoModel salvarAtendimento(AtendimentoModel atendimento){
 
+        atendimento.setValorTotal(calcularValorTotalAtendimento(atendimento));
+        atendimento.setValorComissaoBarbeiro(calcularComissaoBarbeiro(atendimento));
+
+        if(atendimento.getProdutos() != null && !atendimento.getProdutos().isEmpty()){
+            for (ProdutoModel produto : atendimento.getProdutos()){
+                produtoService.diminuirEstoque(produto.getId(),1);
+            }
+        }
+
+        return atendimentoRepository.save(atendimento);
+    }
+
+    private BigDecimal calcularValorTotalAtendimento(AtendimentoModel atendimento){
         BigDecimal valorTotal = BigDecimal.ZERO;
 
         if(atendimento.getServicos() != null){
@@ -56,19 +71,40 @@ public class AtendimentoService {
         return valorTotal;
     }
 
-    public AtendimentoModel salvarAtendimento(AtendimentoModel atendimento){
+    private BigDecimal calcularComissaoBarbeiro(AtendimentoModel atendimento){
+        BigDecimal totalComissao = BigDecimal.ZERO;
+        BarbeiroModel barbeiro = barbeiroService.buscarBarbeiro(atendimento.getBarbeiro().getId());
 
-        BigDecimal total = calcularValorTotalAtendimento(atendimento);
-        atendimento.setValorTotal(total);
+        BigDecimal cem = new BigDecimal("100");
 
-        if(atendimento.getProdutos() != null && !atendimento.getProdutos().isEmpty()){
+        if (atendimento.getServicos() != null) {
+            for (ServicoModel servico : atendimento.getServicos()) {
+                ServicoModel servicoEncontrado = servicoService.buscarServico(servico.getId());
+                if (servicoEncontrado != null) {
 
-            for (ProdutoModel produto : atendimento.getProdutos()){
-                produtoService.diminuirEstoque(produto.getId(),1);
+                    BigDecimal comissao = servicoEncontrado.getPrecoServico()
+                            .multiply(barbeiro.getComissaoServico())
+                            .divide(cem, 2, RoundingMode.HALF_UP);
+
+                    totalComissao = totalComissao.add(comissao);
+                }
             }
         }
 
-        return atendimentoRepository.save(atendimento);
+        if(atendimento.getProdutos() != null){
+            for (ProdutoModel produto : atendimento.getProdutos()){
+                ProdutoModel produtoEncontrado = produtoService.buscarProduto(produto.getId());
+                if (produtoEncontrado != null){
+                    BigDecimal comissao = produtoEncontrado.getPrecoProduto()
+                            .multiply(barbeiro.getComissaoProduto())
+                            .divide(cem, 2, RoundingMode.HALF_UP);
+
+                    totalComissao = totalComissao.add(comissao);
+                }
+            }
+        }
+
+        return totalComissao;
     }
 
 }

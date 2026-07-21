@@ -44,6 +44,24 @@
                 </label>
             </div>
 
+            <div class="mb-4">
+                <label class="form-label text-secondary">Comissão de Serviço:</label>
+
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" th:field="*{comissaoServico}" min="0" required >
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label text-secondary">Comissão de Produto:</label>
+
+                <div class="input-group mb-3">
+                    <input type="number" id="" class="form-control" th:field="*{comissaoProduto}" min="0" required >
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-custom btn-lg">Salvar Alterações</button>
             </div>

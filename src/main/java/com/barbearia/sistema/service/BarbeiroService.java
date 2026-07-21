@@ -3,6 +3,8 @@ package com.barbearia.sistema.service;
 import com.barbearia.sistema.model.BarbeiroModel;
 import com.barbearia.sistema.repository.BarbeiroRepository;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -22,6 +24,7 @@ public class BarbeiroService {
     }
 
     public BarbeiroModel salvarBarbeiro(BarbeiroModel barbeiro){
+
         return barbeiroRepository.save(barbeiro);
     }
 
@@ -42,6 +45,8 @@ public class BarbeiroService {
 
         barbeiroAntigo.setNomeBarbeiro(barbeiroNovo.getNomeBarbeiro());
         barbeiroAntigo.setTelefoneBarbeiro(barbeiroNovo.getTelefoneBarbeiro());
+        barbeiroAntigo.setComissaoServico(barbeiroNovo.getComissaoServico());
+        barbeiroAntigo.setComissaoProduto(barbeiroNovo.getComissaoProduto());
 
         return barbeiroRepository.save(barbeiroAntigo);
     }

@@ -36,6 +36,8 @@
                 <th>Código</th>
                 <th>Nome</th>
                 <th>Telefone</th>
+                <th>Comissão de Serviço (%)</th>
+                <th>Comissão de Produto (%)</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -44,6 +46,9 @@
                 <td th:text="${barbeiro.id}">1</td>
                 <td th:text="${barbeiro.nomeBarbeiro}">João</td>
                 <td th:text="${barbeiro.telefoneBarbeiro}">9999-9999</td>
+                <td th:text="${#numbers.formatInteger(barbeiro.comissaoServico,1)} + '%'">5%</td>
+                <td th:text="${#numbers.formatInteger(barbeiro.comissaoProduto,1)} + '%'">5%</td>
+
                 <td>
 
                     <a th:href="@{/barbeiros/editar/{id}(id=${barbeiro.id})}" class="btn btn-sm btn-outline-info"> Editar</a>
@@ -63,6 +68,9 @@
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/imask"></script>
+<script th:src="@{/js/mascaras.js}"></script>
 
 </body>
 </html>

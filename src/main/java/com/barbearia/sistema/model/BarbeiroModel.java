@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.math.BigDecimal;
+
 @Entity
 public class BarbeiroModel {
 
@@ -15,13 +17,18 @@ public class BarbeiroModel {
     private String nomeBarbeiro;
     private String telefoneBarbeiro;
     private Boolean ativo = true;
+    private BigDecimal comissaoServico;
+    private BigDecimal comissaoProduto;
+
 
     public BarbeiroModel(){
     }
 
-    public BarbeiroModel(String nomeBarbeiro, String telefoneBarbeiro){
+    public BarbeiroModel(String nomeBarbeiro, String telefoneBarbeiro, BigDecimal comissaoServico, BigDecimal comissaoProduto){
         this.nomeBarbeiro = nomeBarbeiro;
         this.telefoneBarbeiro = telefoneBarbeiro;
+        this.comissaoServico = comissaoServico;
+        this.comissaoProduto = comissaoProduto;
     }
 
     public Long getId() {
@@ -54,5 +61,21 @@ public class BarbeiroModel {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public BigDecimal getComissaoServico() {
+        return comissaoServico;
+    }
+
+    public void setComissaoServico(BigDecimal comissaoServico) {
+        this.comissaoServico = comissaoServico;
+    }
+
+    public BigDecimal getComissaoProduto() {
+        return comissaoProduto;
+    }
+
+    public void setComissaoProduto(BigDecimal comissaoProduto) {
+        this.comissaoProduto = comissaoProduto;
     }
 }

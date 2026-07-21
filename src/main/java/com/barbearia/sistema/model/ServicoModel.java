@@ -17,7 +17,7 @@ public class ServicoModel {
     private String nome;
     private String descricao;
     private BigDecimal precoServico;
-    private Boolean ativo;
+    private Boolean ativo = true;
 
 
     public ServicoModel(){

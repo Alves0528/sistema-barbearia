@@ -12,6 +12,7 @@
         .btn-custom:hover { background-color: #e67e22; color: #fff; }
         .form-control, .form-select { background-color: #2c2c2c; border: 1px solid #444; color: #fff; }
         .form-control:focus, .form-select:focus { background-color: #333; color: #fff; border-color: #f39c12; box-shadow: none; }
+        .bg-orange { background-color: #ff7800 }
     </style>
 </head>
 <body>
@@ -41,7 +42,6 @@
                                 th:field="*{horaInicio}"
                                 min="08:00"
                                 max="19:00"
-                                step="1800"
                                 required
                             >
                         </div>
@@ -54,7 +54,6 @@
                                 th:field="*{horaTermino}"
                                 min="09:00"
                                 max="20:00"
-                                step="1800"
                                 required
                             >
                         </div>
@@ -73,17 +72,36 @@
 
             <div class="mb-4 p-3" style="border: 1px solid #444; border-radius: 10px;">
                 <h5 class="text-warning"> Serviços Realizados</h5>
-                <div th:each="serv : ${listaServicos}" class="form-check text-secondary">
-                    <input class="form-check-input" type="checkbox" th:field="*{servicos}" th:value="${serv.id}">
-                    <label class="form-check-label" th:text="${serv.nome} + ' (R$ ' + ${serv.precoServico} + ')'"></label>
+                <div th:each="servico : ${listaServicos}" class="form-check text-secondary">
+                    <input class="form-check-input" type="checkbox" th:field="*{servicos}" th:value="${servico.id}">
+                    <label class="form-check-label" th:text="${servico.nome} + ' (R$ ' + ${servico.precoServico} + ')'"></label>
                 </div>
             </div>
 
             <div class="mb-4 p-3" style="border: 1px solid #444; border-radius: 10px;">
                 <h5 class="text-warning"> Produtos Vendidos</h5>
-                <div th:each="prod : ${listaProdutos}" class="form-check text-secondary">
-                    <input class="form-check-input" type="checkbox" th:field="*{produtos}" th:value="${prod.id}">
-                    <label class="form-check-label" th:text="${prod.nomeProduto} + ' (R$ ' + ${prod.precoProduto} + ')'"></label>
+                <div th:each="produto : ${listaProdutos}" class="form-check text-secondary">
+
+                    <input class="form-check-input" type="checkbox"
+                           th:value="${produto.id}"
+                           th:field="*{produtos}"
+                           th:disabled="${produto.quantidadeEstoque <= 0}">
+
+                    <label class="form-check-label"
+                           th:text="${produto.nomeProduto} + ' (R$ ' + ${produto.precoProduto} + ')'">
+                    </label>
+
+                    <span th:if="${produto.quantidadeEstoque <= 0}"
+                          class="badge bg-danger ms-2">
+                        Esgostado
+                    </span>
+
+                    <span th:if="${produto.quantidadeEstoque > 0 and produto.quantidadeEstoque <= 3}"
+                          class="badge bg-orange text-dark ms-2 "
+                          th:text="| Restam ${produto.quantidadeEstoque} no estoque!|">
+                        Restam apenas 2
+                    </span>
+
                 </div>
             </div>
 

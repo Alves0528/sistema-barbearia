@@ -35,6 +35,7 @@
             <tr>
                 <th>Código</th>
                 <th>Barbeiro Responsável</th>
+                <th>Comissão (R$)</th>
                 <th>Total (R$)</th>
                 <th>Data</th>
                 <th>Início</th>
@@ -45,6 +46,7 @@
             <tr th:each="atendimento : ${listaAtendimentos}">
                 <td th:text="${atendimento.id}">1</td>
                 <td th:text="${atendimento.barbeiro.nomeBarbeiro}">João</td>
+                <td class="text-success fw-bold" th:text="|R$ ${atendimento.valorComissaoBarbeiro}|">45.99</td>
                 <td th:text="${atendimento.valorTotal}">50.00</td>
                 <td th:text="${#temporals.format(atendimento.data, 'dd/MM/yyyy')}">01/01/2026</td>
                 <td th:text="${atendimento.horaInicio}">13:30</td>
