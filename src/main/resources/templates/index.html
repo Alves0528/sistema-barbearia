@@ -12,6 +12,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="container">
         <a class="navbar-brand" href="/">BARBERSHOP PRO</a>
+        <a class="navbar-brand btn btn-outline-light btn-sm" href="/admin/login">Login</a>
     </div>
 </nav>
 
@@ -19,50 +20,26 @@
 
     <div class="text-center mb-5">
         <h1 class="display-4 fw-bold">Bem-vindo(a) ao Sistema</h1>
-        <p class="text-secondary fs-5">Gerencie sua equipe, serviços e vendas em um só lugar.</p>
+        <p class="text-secondary fs-5"> Verique o estoque e realize o laçancemento de serviços</p>
     </div>
 
     <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card card-custom p-4 text-center h-100">
-                <h3 class="mt-2 text-color">Barbeiros</h3>
-                <p class="text-secondary mt-3">Cadastre e gerencie a equipe da barbearia.</p>
-                <a href="/barbeiros" class="btn btn-custom mt-auto mx-4">Acessar</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card card-custom p-4 text-center h-100">
-                <h3 class="text-color mt-2">Serviços</h3>
-                <p class="text-secondary mt-3">Defina preços de cortes, barbas e tratamentos.</p>
-                <a href="/servicos" class="btn btn-custom mt-auto mx-4">Acessar</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card card-custom p-4 text-center h-100">
-                <h3 class="text-color mt-2">Produtos</h3>
-                <p class="text-secondary mt-3">Gerencie valores e quantidade em estoque.</p>
-                <a href="/produtos" class="btn btn-custom mt-auto mx-4">Acessar</a>
-            </div>
-        </div>
 
         <div class="col-md-6 mt-4">
             <div class="card card-custom p-5 text-center" style="border: 2px solid #f39c12;">
-                <h2 class="text-color"> Atendimento</h2>
-                <p class="text-secondary mt-2 mb-4">Vizualize atendimentos registrados.</p>
-                <a href="/atendimentos" class="btn btn-custom btn-lg w-50 mx-auto">Acessar</a>
+                <h2 class="text-color"> Produtos</h2>
+                <h5 class="text-secondary mt-2 mb-4">Verificar valores e quantidade em estoque</h5>
+                <a href="/produtos" class="btn btn-custom btn-lg w-50 mx-auto">Acessar</a>
             </div>
         </div>
 
         <div class="col-md-6 mt-4">
             <div class="card card-custom p-5 text-center" style="border: 2px solid #f39c12;">
                 <h2 class="text-color">Registrar Novo Atendimento</h2>
-                <p class="text-secondary mt-2 mb-4">Lance os cortes e os produtos vendidos para atualizar o estoque.</p>
+                <h5 class="text-secondary mt-2 mb-4">Lance os serviço e os produtos vendidos.</h5>
                 <a href="/atendimentos/novo" class="btn btn-custom btn-lg w-50 mx-auto">Iniciar Venda</a>
             </div>
         </div>
-
     </div>
 </div>
 

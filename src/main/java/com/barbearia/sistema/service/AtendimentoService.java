@@ -5,7 +5,6 @@ import com.barbearia.sistema.model.BarbeiroModel;
 import com.barbearia.sistema.model.ProdutoModel;
 import com.barbearia.sistema.model.ServicoModel;
 import com.barbearia.sistema.repository.AtendimentoRepository;
-import com.barbearia.sistema.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -46,6 +45,7 @@ public class AtendimentoService {
     }
 
     private BigDecimal calcularValorTotalAtendimento(AtendimentoModel atendimento){
+
         BigDecimal valorTotal = BigDecimal.ZERO;
 
         if(atendimento.getServicos() != null){
@@ -72,6 +72,7 @@ public class AtendimentoService {
     }
 
     private BigDecimal calcularComissaoBarbeiro(AtendimentoModel atendimento){
+
         BigDecimal totalComissao = BigDecimal.ZERO;
         BarbeiroModel barbeiro = barbeiroService.buscarBarbeiro(atendimento.getBarbeiro().getId());
 
