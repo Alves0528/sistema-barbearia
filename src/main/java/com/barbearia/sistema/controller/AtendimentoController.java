@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/atendimentos")
 public class AtendimentoController {
+
     private final AtendimentoService atendimentoService;
     private final BarbeiroService barbeiroService;
     private final ServicoService servicoService;
     private final ProdutoService produtoService;
+
     public AtendimentoController(AtendimentoService atendimentoService, BarbeiroService barbeiroService, ServicoService servicoService,ProdutoService produtoService) {
         this.atendimentoService = atendimentoService;
         this.barbeiroService = barbeiroService;
