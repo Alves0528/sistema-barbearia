@@ -3,6 +3,7 @@ package com.barbearia.sistema.controller;
 import com.barbearia.sistema.exception.LoginInvalidoException;
 import com.barbearia.sistema.model.UsuarioModel;
 import com.barbearia.sistema.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,20 +27,30 @@ public class LoginController {
         return "administracao/login";
     }
 
+    @GetMapping("/indexAdmin")
+    public String abrirIndexAdmin() {
+        return "administracao/indexAdmin";
+    }
+
     @PostMapping("/validarLogin")
-    public String AcessarSistema(UsuarioModel usuario, Model model) {
+    public String validarAcesso(UsuarioModel usuario, Model model, HttpSession session) {
         try {
-            usuarioService.verificarAcesso(usuario.getAcesso(), usuario.getSenha());
-            return "administracao/indexAdmin";
+            UsuarioModel usuarioLogado = usuarioService.verificarAcesso(usuario.getAcesso(), usuario.getSenha());
+            session.setAttribute("usuarioLogado", usuarioLogado);
+
+            return "redirect:/admin/indexAdmin";
 
         } catch (LoginInvalidoException e) {
             model.addAttribute("erroLogin", e.getMessage());
+            model.addAttribute("usuario", usuario);
             return "administracao/login";
         }
     }
 
-    @GetMapping("/dashboard")
+
+
+    /*@GetMapping("/dashboard")
     public String Dashboard() {
         return "administracao/dashboard";
-    }
+    }*/
 }
